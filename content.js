@@ -25,25 +25,11 @@ const highlightOverlay = createHighlightOverlay();
 function updateHighlight(element) {
   if (element) {
     const rect = element.getBoundingClientRect();
-    let top = rect.top;
-    let left = rect.left;
-    let scrollParent = element.parentElement;
+    const scrollX = window.scrollX || window.pageXOffset;
+    const scrollY = window.scrollY || window.pageYOffset;
 
-    // Traverse up the DOM tree to find all scrollable parents
-    while (scrollParent && scrollParent !== document.body) {
-      if (scrollParent.scrollHeight > scrollParent.clientHeight) {
-        top += scrollParent.scrollTop;
-        left += scrollParent.scrollLeft;
-      }
-      scrollParent = scrollParent.parentElement;
-    }
-
-    // Add window scroll position
-    top += window.scrollY;
-    left += window.scrollX;
-
-    highlightOverlay.style.top = `${top}px`;
-    highlightOverlay.style.left = `${left}px`;
+    highlightOverlay.style.top = `${rect.top}px`;
+    highlightOverlay.style.left = `${rect.left}px`;
     highlightOverlay.style.width = `${rect.width}px`;
     highlightOverlay.style.height = `${rect.height}px`;
     highlightOverlay.style.display = 'block';
@@ -110,7 +96,7 @@ function confirmSelection(format) {
     }
 
     navigator.clipboard.writeText(content).then(function() {
-      alert(`Content copied to clipboard as ${format.toUpperCase()}!`);
+      // alert(`Content copied to clipboard as ${format.toUpperCase()}!`);
     }).catch(function(err) {
       console.error('Failed to copy text: ', err);
     });
@@ -223,7 +209,5 @@ function handleScroll() {
 
 window.addEventListener('scroll', handleScroll, true);
 
-// Clean up the overlay when the extension is deactivated
-window.addEventListener('beforeunload', function() {
-  highlightOverlay.remove();
-});
+
+
