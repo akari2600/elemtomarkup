@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { width: 300px; padding: 10px; font-family: Arial, sans-serif; }
+    ul { list-style-type: none; padding: 0; }
+    li { margin-bottom: 10px; }
+    button { width: 100%; padding: 10px; cursor: pointer; }
+    #selectorInput { display: none; margin-top: 10px; }
+    #cssSelector { width: 100%; padding: 5px; margin-bottom: 5px; }
+  </style>
+</head>
+<body>
+  <ul>
+    <li><button id="mouseSelect">Select element with mouse</button></li>
+    <li><button id="selectorSelect">Enter CSS selector</button></li>
+  </ul>
+  <div id="selectorInput">
+    <input type="text" id="cssSelector" placeholder="Enter CSS selector">
+    <button id="applySelectorBtn">Apply</button>
+  </div>
+  <script src="libs/turndown.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Element Selector and Copier",
+  "version": "1.0",
+  "description": "Select and copy element's OuterHTML",
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": [
+        "turndown.js",
+        "content.js"
+      ]
+    }
+  ]
+}
